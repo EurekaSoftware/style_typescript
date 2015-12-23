@@ -53,17 +53,9 @@ When developing software as an organization, the value of the software produced 
 
 **[top](#table-of-contents)**
 
-## Browser Compatibility
-  - Target evergreen browsers `ie >= 11`
-  - Target modern browsers `ie >= 9` if it is necessary for a project
-  - Avoid targeting older browsers `ie < 9` if at all possible
-
-**[top](#table-of-contents)**
-
 ## Files
   - All TypeScript files must have a ".ts" extension.
   - They should be all lower case, and only include letters, numbers, and periods.
-  - It is OK (even recommended) to separate words with periods (e.g. `my.view.html`).
   - **All files should end in a new line.** This is necessary for some Unix systems.
 
 **[top](#table-of-contents)**
@@ -91,21 +83,21 @@ When developing software as an organization, the value of the software produced 
   let greeting = 'Hello World!';
 
   // bad
-  let html = "<div class='bold'>Hello World</div>";
+  let msg = "Your mom told me 'hi'";
 
   // bad
-  let html = '<div class=\'bold\'>Hello World</div>';
+  let msg = 'Your mom told me \'hi\'';
 
   // good
-  let html = '<div class="bold">Hello World</div>';
+  let msg = 'Your mom told me "hi"';
   ```
 
 **[top](#table-of-contents)**
 
 ## Comments
-  - Comments are strongly encouraged. It is very useful to be able to read comments and understand the intentions of a given block of code.
-  - Comments need to be clear, just like the code they are annotating.
-  - Make sure your comments are meaningful.
+  - Comments should be used judiciously. Your goal should be writing code that is intuitive and easy to follow without comments.
+  - Comments should be reserved for cases when you have refactored your code as much as is practical and its still not intuitive on its own, or there are subtle or important conditions that developers need to know about.
+  - If you do comment your code, make sure the comments are clear and concise. Think about your comments from the perspective of someone who isn't familiar with that area of the code.
 
 The following example is a case where a comment is completely erroneous, and can actually make the code harder to read.
 
@@ -114,64 +106,19 @@ The following example is a case where a comment is completely erroneous, and can
   let index = 0;
   ```
 
-  - All public functions must have a comment block `/**...*/` using [JSDoc](http://usejsdoc.org/) style comments.
-
-JSDocs can be interpreted by IDEs for better intellisense. Below is an example of a JSDoc comment block for a function.
+The following is an example of a well-placed comment:
 
   ```typescript
-  /**
-   * Takes in a name and returns a greeting string.
-   *
-   * @param name The name of the greeted person.
-   */
-  function getGreeting(name: string): string {
-      return 'Hello ' + name + '!';
+  // square root of n with Newton-Raphson approximation
+  function sqrt(n: number): number {
+      let r = n / 2;
+      while (abs(r - (n/r)) > t) {
+          r = 0.5 *  r + (n/r));
+      }
+      return r
   }
   ```
 
-### Class
-
-  - All classes must have block comments `/**...*/` for all public variables and functions.
-  - All public functions should use [JSDoc](http://usejsdoc.org/) style comments.
-  - Functions need to have a comment explaining what the function does, and all of the input parameters need to be annotated with `@param`.
-  - The class should include a block comment containing the description of the class
-  - The constructor should contain a JSDoc comment annotating any input parameters.
-
-  ```typescript
-  /**
-   * Contains properties of a Person.
-   */
-  class Person {
-      /**
-       * Returns a new Person with the specified name.
-       *
-       * @param name The name of the new Person.
-       */
-      static GetPerson(name: string): Person {
-          return new Person(name);
-      }
-
-      /**
-       * @param name The name of the new Person.
-       */
-      constructor(public name: string) { }
-
-      /**
-       * Instructs this Person to walk for a certain amount
-       * of time.
-       *
-       * @param millis The number of milliseconds the Person
-       * should walk.
-       */
-      walkFor(millis: number): void {
-          console.log(this.name + ' is now walking.');
-
-          setTimeout(() => {
-              console.log(this.name + ' has stopped walking.');
-          }, millis);
-      }
-  }
-  ```
 
 **[top](#table-of-contents)**
 
@@ -229,16 +176,16 @@ JSDocs can be interpreted by IDEs for better intellisense. Below is an example o
 
   ```typescript
   // bad
-  console.log(a + b);
+  console.log(a + b)
 
-  let a = 2,
-      b = 4;
+  let a = 2
+  let b = 4
 
   // good
-  let a = 2,
-      b = 4;
+  let a = 2
+  let b = 4
 
-  console.log(a + b);
+  console.log(a + b)
   ```
 
   - Implied global variables should never be used.
@@ -254,19 +201,19 @@ JSDocs can be interpreted by IDEs for better intellisense. Below is an example o
   }
   ```
 
-  - Use one `let` keyword to define a block of variables.
+  - Use one `let` keyword per variable.
   - Declare each variable on a newline.
 
   ```typescript
   // bad
-  let a = 2;
-  let b = 2;
-  let c = 4;
-
-  // good
   let a = 2,
       b = 2,
       c = 4;
+
+  // good
+  let a = 2;
+  let b = 2;
+  let c = 4;
 
   // bad
   // b will be defined on global scope.
@@ -408,6 +355,34 @@ JSDocs can be interpreted by IDEs for better intellisense. Below is an example o
 
   - Variable, module, and function names should use lowerCamelCase.
 
+   ```typescript
+  // bad
+  let account_name: string  = 'abc'
+  let AccountNumber: number = 123
+
+  // good
+  let accountName: string = 'abc'
+  let accountNumber: number = 123
+
+  // bad
+  function calc_balance(): number {
+      ...
+  }
+
+  function AddAmount(): void {
+      ...
+  }
+
+  // good
+  function calcBalance(): number {
+      ...
+  }
+
+  function addAmount(): void {
+      ...
+  }
+  ```
+
 ### Use of var, let, and const
 
   - Use `const` where appropriate, for values that should never change
@@ -418,22 +393,21 @@ JSDocs can be interpreted by IDEs for better intellisense. Below is an example o
 
 ### Types
 
-  - Types should be used whenever necessary.
-  - Arrays should be defined as `Array<type>` instead of `type[]`.
+  - Types should be used whenever possible.
+  - Arrays should be defined as `type[]` instead of `Array<type>`.
   - Use the `any` type sparingly, it is always better to define an interface.
-  - Always define the return type of functions.
-  - If TypeScript is capable of implicitly determining the return type of a function, then it is unnecessary to define the return type.
-  - Always define the types of variables/parameters unless TypeScript can implicitly infer their type.
+  - Always specify the types of function parameters.
+  - Always specify the return type of functions.
 
   ```typescript
   // bad
   let numbers = [];
 
   // bad
-  let numbers: number[] = [];
+  let numbers: Array<number> = [];
 
   // good
-  let numbers: Array<number> = [];
+  let numbers: number[] = [];
   ```
 
 **[top](#table-of-contents)**
@@ -441,21 +415,18 @@ JSDocs can be interpreted by IDEs for better intellisense. Below is an example o
 ### Classes
 
   - Classes/Constructors should use UpperCamelCase (PascalCase).
-  - `Private` and `private static` members in classes should be denoted with the `private` keyword.
-  - `Protected` members in classes do not use the `private` keyword.
-  - Default to using `protected` for all instance members
-  - Use `private` instance members sparingly
-  - Use `public` instance members only when they are used by other parts of the application.
+  - Annotate all class members with the `public`, `private`, or `protected` access modifiers.
+  - Default to using `private` for all instance members. Only use `public` or `protected` if there is a good reason for code outside the class to get access to the member.
 
   ```typescript
   class Person {
-      protected fullName: string;
+      private fullName: string;
 
-      constructor(public firstName: string, public lastName: string) {
+      public constructor(public firstName: string, public lastName: string) {
           this.fullName = firstName + ' ' + lastName;
       }
 
-      toString() {
+      public toString() {
           return this.fullName;
       }
 
@@ -500,18 +471,21 @@ JSDocs can be interpreted by IDEs for better intellisense. Below is an example o
 ### Simple
 
   - Each line should contain at most one statement.
-  - A semicolon should be placed at the end of every simple statement.
+  - Do not put semicolons at the end of statements. Semicolons should only be used when it would be syntactically or semantically incorrect not to use one (as when declaring a `for` loop).
 
   ```typescript
-  // bad
+  // good
   let greeting = 'Hello World'
-
   alert(greeting)
 
-  // good
+  // bad
   let greeting = 'Hello World';
-
   alert(greeting);
+
+  // okay because required
+  for (let i = 0; i < 10; i++) {
+      ...
+  }
   ```
 
 **[top](#table-of-contents)**
@@ -662,16 +636,38 @@ If statements should take the following form:
 
   if (/* condition */) {
       // ...
-  } else {
+  }
+  else {
       // ...
   }
 
   if (/* condition */) {
       // ...
-  } else if (/* condition */) {
+  }
+  else if (/* condition */) {
       // ...
+  }
+  else {
+      // ...
+  }
+  ```
+
+Always put `else` statements on their own line. Do not put the `else` keyword on the same line as the closing curly brace of the preceding `if` statement.
+
+  ```typescript
+  // bad
+  if(a > b) {
+     // ...
   } else {
-      // ...
+     // ...
+  }
+
+  // good
+  if(a > b) {
+     // ...
+  }
+  else {
+     // ...
   }
   ```
 
@@ -686,10 +682,9 @@ For statements should have the following form:
       // ...
   }
 
-  let keys = Object.keys(/* object */),
-      length = keys.length;
+  let keys = Object.keys(/* object */)
 
-  for(let i = 0; i < length; ++i) {
+  for(let i = 0; i < keys.length; ++i) {
       // ...
   }
   ```
@@ -747,22 +742,47 @@ Switch statements should have the following form:
 
 ### Try
 
-  - Try statements should be avoided whenever possible. They are not a good way of providing flow control.
-
 Try statements should have the following form:
 
   ```typescript
   try {
       // ...
-  } catch (error: Error) {
+  }
+  catch (error: Error) {
       // ...
   }
 
   try {
       // ...
+  }
+  catch (error: Error) {
+      // ...
+  }
+  finally {
+      // ...
+  }
+  ```
+
+Always put `catch` and `finally` statements on their own line.
+
+  ```typescript
+  // bad
+  try {
+      // ...
   } catch (error: Error) {
       // ...
   } finally {
+      // ...
+  }
+
+  // good
+  try {
+      // ...
+  }
+  catch (error: Error) {
+      // ...
+  }
+  finally {
       // ...
   }
   ```
@@ -777,7 +797,6 @@ Try statements should have the following form:
 
 ### Throw
 
-  - Avoid the use of the throw statement unless absolutely necessary.
   - Flow control through try/catch exception handling is not recommended.
 
 **[top](#table-of-contents)**
