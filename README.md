@@ -77,19 +77,19 @@ When developing software as an organization, the value of the software produced 
 
   ```typescript
   // bad
-  let greeting = "Hello World!";
+  let greeting = "Hello World!"
 
   // good
-  let greeting = 'Hello World!';
+  let greeting = 'Hello World!'
 
   // bad
-  let msg = "Your mom told me 'hi'";
+  let msg = "Your mom told me 'hi'"
 
   // bad
-  let msg = 'Your mom told me \'hi\'';
+  let msg = 'Your mom told me \'hi\''
 
   // good
-  let msg = 'Your mom told me "hi"';
+  let msg = 'Your mom told me "hi"'
   ```
 
 **[top](#table-of-contents)**
@@ -103,7 +103,7 @@ The following example is a case where a comment is completely erroneous, and can
 
   ```typescript
   // Set index to zero.
-  let index = 0;
+  let index = 0
   ```
 
 The following is an example of a well-placed comment:
@@ -111,9 +111,9 @@ The following is an example of a well-placed comment:
   ```typescript
   // square root of n with Newton-Raphson approximation
   function sqrt(n: number): number {
-      let r = n / 2;
+      let r = n / 2
       while (abs(r - (n/r)) > t) {
-          r = 0.5 *  r + (n/r));
+          r = 0.5 *  r + (n/r))
       }
       return r
   }
@@ -132,29 +132,29 @@ The following is an example of a well-placed comment:
 
   ```typescript
   // bad
-  let lines: Array<string>; // Holds all the lines in the file.
+  let lines: Array<string> // Holds all the lines in the file.
 
   // good
   // Holds all the lines in the file.
-  let lines: Array<string>;
+  let lines: Array<string>
 
   // bad
   function walkFor(name: string, millis: number): void {
-      console.log(name + ' is now walking.');
+      console.log(name + ' is now walking.')
       // Wait for millis milliseconds to stop walking
       setTimeout(() => {
-          console.log(name + ' has stopped walking.');
-      }, millis);
+          console.log(name + ' has stopped walking.')
+      }, millis)
   }
 
   // good
   function walkFor(name: string, millis: number): void {
-      console.log(name + ' is now walking.');
+      console.log(name + ' is now walking.')
 
       // Wait for millis milliseconds to stop walking
       setTimeout(() => {
-          console.log(name + ' has stopped walking.');
-      }, millis);
+          console.log(name + ' has stopped walking.')
+      }, millis)
   }
   ```
 
@@ -195,9 +195,9 @@ The following is an example of a well-placed comment:
   // bad
   function add(a: number, b: number): number {
       // c is on the global scope!
-      c = 6;
+      c = 6
 
-      return a + b + c;
+      return a + b + c
   }
   ```
 
@@ -208,16 +208,16 @@ The following is an example of a well-placed comment:
   // bad
   let a = 2,
       b = 2,
-      c = 4;
+      c = 4
 
   // good
-  let a = 2;
-  let b = 2;
-  let c = 4;
+  let a = 2
+  let b = 2
+  let c = 4
 
   // bad
   // b will be defined on global scope.
-  let a = b = 2, c = 4;
+  let a = b = 2, c = 4
   ```
 
 ## Function Declarations
@@ -228,24 +228,24 @@ The following is an example of a well-placed comment:
   ```typescript
   // bad
   function createGreeting(name: string): string {
-      let message = 'Hello ';
+      let message = 'Hello '
 
-      return greet;
+      return greet
 
       function greet() {
-          return message + name + '!';
+          return message + name + '!'
       }
   }
 
   // good
   function createGreeting(name: string): string {
-      let message = 'Hello ';
+      let message = 'Hello '
 
       function greet() {
-          return message + name + '!';
+          return message + name + '!'
       }
 
-      return greet;
+      return greet
   }
   ```
 
@@ -271,11 +271,11 @@ The following is an example of a well-placed comment:
   ```typescript
   // bad
   function foo(): string {
-    return 'foo';}
+    return 'foo'}
 
   // good
   function foo(): string {
-      return 'foo';
+      return 'foo'
   }
   ```
 
@@ -305,26 +305,26 @@ The following is an example of a well-placed comment:
   ```typescript
   // bad
   clickAlert() {
-      let element = document.querySelector('div');
+      let element = document.querySelector('div')
 
-      this.foo = 'foo';
+      this.foo = 'foo'
 
       element.addEventListener('click', function(ev: Event) {
           // this.foo does not exist!
-          alert(this.foo);
-      });
+          alert(this.foo)
+      })
   }
 
   // good
   clickAlert() {
-      let element = document.querySelector('div');
+      let element = document.querySelector('div')
 
-      this.foo = 'foo';
+      this.foo = 'foo'
 
       element.addEventListener('click', (ev: Event) => {
           // TypeScript allows this.foo to exist!
-          alert(this.foo);
-      });
+          alert(this.foo)
+      })
   }
   ```
 
@@ -333,12 +333,12 @@ The following is an example of a well-placed comment:
 
   ```typescript
   // bad
-  element.addEventListener('click', (ev: Event)=>{alert('foo');});
+  element.addEventListener('click', (ev: Event)=>{alert('foo')})
 
   // good
   element.addEventListener('click', (ev: Event) => {
-      alert('foo');
-  });
+      alert('foo')
+  })
   ```
 
   - The statement body should be indented 4 spaces.
@@ -401,13 +401,13 @@ The following is an example of a well-placed comment:
 
   ```typescript
   // bad
-  let numbers = [];
+  let numbers = []
 
   // bad
-  let numbers: Array<number> = [];
+  let numbers: Array<number> = []
 
   // good
-  let numbers: number[] = [];
+  let numbers: number[] = []
   ```
 
 **[top](#table-of-contents)**
@@ -420,23 +420,23 @@ The following is an example of a well-placed comment:
 
   ```typescript
   class Person {
-      private fullName: string;
+      private fullName: string
 
       public constructor(public firstName: string, public lastName: string) {
-          this.fullName = firstName + ' ' + lastName;
+          this.fullName = firstName + ' ' + lastName
       }
 
       public toString() {
-          return this.fullName;
+          return this.fullName
       }
 
       protected walkFor(millis: number) {
-          console.log(this.fullName + ' is now walking.');
+          console.log(this.fullName + ' is now walking.')
 
           // Wait for millis milliseconds to stop walking
           setTimeout(() => {
-              console.log(this.fullName + ' has stopped walking.');
-          }, millis);
+              console.log(this.fullName + ' has stopped walking.')
+          }, millis)
       }
   }
   ```
@@ -451,9 +451,9 @@ The following is an example of a well-placed comment:
 
   ```typescript
   interface IPerson {
-      firstName: string;
-      lastName: string;
-      toString(): string;
+      firstName: string
+      lastName: string
+      toString(): string
   }
   ```
 
@@ -479,8 +479,8 @@ The following is an example of a well-placed comment:
   alert(greeting)
 
   // bad
-  let greeting = 'Hello World';
-  alert(greeting);
+  let greeting = 'Hello World'
+  alert(greeting)
 
   // okay because required
   for (let i = 0; i < 10; i++) {
@@ -499,11 +499,11 @@ Compound statements are statements containing lists of statements enclosed in cu
 
   ```typescript
   // bad
-  if (condition === true) { alert('Passed!'); }
+  if (condition === true) { alert('Passed!') }
 
   // good
   if (condition === true) {
-      alert('Passed!');
+      alert('Passed!')
   }
   ```
   - The left curly brace `{` should be at the end of the line that begins the compound statement.
@@ -513,12 +513,12 @@ Compound statements are statements containing lists of statements enclosed in cu
   // bad
   if (condition === true)
   {
-      alert('Passed!');
+      alert('Passed!')
   }
 
   // good
   if (condition === true) {
-      alert('Passed!');
+      alert('Passed!')
   }
   ```
 
@@ -526,15 +526,15 @@ Compound statements are statements containing lists of statements enclosed in cu
 
   ```typescript
   // bad
-  if (condition === true) alert('Passed!');
+  if (condition === true) alert('Passed!')
 
   // bad
   if (condition === true)
-      alert('Passed!');
+      alert('Passed!')
 
   // good
   if (condition === true) {
-      alert('Passed!');
+      alert('Passed!')
   }
   ```
 
@@ -542,13 +542,13 @@ If you do not add braces `{}` around compound statements, it makes it very easy 
 
   ```typescript
   if (condition === true)
-      alert('Passed!');
-      return condition;
+      alert('Passed!')
+      return condition
   ```
 
 It appears the intention of the above code is to return if `condition === true`, but without braces `{}` the return statement will be executed regardless of the condition.
 
-  - Compount statements do not need to end in a semicolon `;` with the exception of a `do { } while();` statement.
+  - Compount statements do not need to end in a semicolon `` with the exception of a `do { } while()` statement.
 
 **[top](#table-of-contents)**
 
@@ -560,13 +560,13 @@ It appears the intention of the above code is to return if `condition === true`,
   ```typescript
   // bad
   return
-      'Hello World!';
+      'Hello World!'
 
   // bad
-  return ('Hello World!');
+  return ('Hello World!')
 
   // good
-  return 'Hello World!';
+  return 'Hello World!'
   ```
 
   - It is recommended to take a return-first approach whenever possible.
@@ -574,22 +574,22 @@ It appears the intention of the above code is to return if `condition === true`,
   ```typescript
   // bad
   function getHighestNumber(a: number, b: number): number {
-      let out = b;
+      let out = b
 
       if(a >= b) {
-          out = a;
+          out = a
       }
 
-      return out;
+      return out
   }
 
   // good
   function getHighestNumber(a: number, b: number): number {
       if(a >= b) {
-          return a;
+          return a
       }
 
-      return b;
+      return b
   }
   ```
 
@@ -598,12 +598,12 @@ It appears the intention of the above code is to return if `condition === true`,
   ```typescript
   // bad
   function getPerson(name: string) {
-      return new Person(name);
+      return new Person(name)
   }
 
   // good
   function getPerson(name: string): Person {
-      return new Person(name);
+      return new Person(name)
   }
   ```
 
@@ -616,12 +616,12 @@ It appears the intention of the above code is to return if `condition === true`,
   ```typescript
   // bad
   function isString(str: any) {
-      return !!str;
+      return !!str
   }
 
   // good
   function isString(str: any) {
-      return typeof str === 'string';
+      return typeof str === 'string'
   }
   ```
 
@@ -709,15 +709,19 @@ While statements should have the following form:
 
 ### Do While
 
-  - Do while statements should be avoided unless absolutely necessary to maintain consistency.
-  - Do while statements must end with a semicolon `;`
-
-Do while statements should have to following form:
+  - the `while` keyword should go on a new line after the closing curly brace of the `do` statement
 
   ```typescript
+  // bad
+  do {
+        // ...
+  } while (/* condition */)
+
+  // good
   do {
       // ...
-  } while (/* condition */);
+  }
+  while (/* condition */)
   ```
 
 **[top](#table-of-contents)**
@@ -823,35 +827,35 @@ Blank lines improve code readability by allowing the developer to logically grou
 
   ```typescript
   // bad
-  let sum = a+b;
+  let sum = a+b
 
   // good
-  let sum = a + b;
+  let sum = a + b
 
   // bad
-  let name = person . name;
+  let name = person . name
 
   // good
-  let name = person.name;
+  let name = person.name
 
   // bad
-  let item = items [4];
+  let item = items [4]
 
   // good
-  let item = items[4];
+  let item = items[4]
   ```
 
   - No space should separate a unary/incremental operator `!x, -x, +x, ~x, ++x, --x` and its operand.
 
   ```typescript
   // bad
-  let neg = - a;
+  let neg = - a
 
   // good
-  let neg = -a;
+  let neg = -a
   ```
 
-  - Each semicolon `;` in the control part of a `for` statement should be followed with a space.
+  - Each semicolon `` in the control part of a `for` statement should be followed with a space.
 
   ```typescript
   // bad
@@ -886,7 +890,7 @@ Blank lines improve code readability by allowing the developer to logically grou
 
   // good
   while (typeof node === 'object') {
-      node = node.next;
+      node = node.next
 
       // ...
   }
@@ -916,10 +920,10 @@ Blank lines improve code readability by allowing the developer to logically grou
 
   ```typescript
   // bad
-  let a: number = 2;
+  let a: number = 2
 
   // good
-  let a = 2;
+  let a = 2
   ```
 
   - Always define the return type of functions, this helps to make sure that functions always return the correct type
@@ -927,12 +931,12 @@ Blank lines improve code readability by allowing the developer to logically grou
   ```typescript
   // bad
   function sum(a: number, b: number) {
-      return a + b;
+      return a + b
   }
 
   // good
   function sum(a: number, b: number): number {
-      return a + b;
+      return a + b
   }
   ```
 
