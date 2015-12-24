@@ -67,8 +67,8 @@ When developing software as an organization, the value of the software produced 
 **[top](#table-of-contents)**
 
 ## Line Length
-  - Lines must not be longer than 140 characters.
-  - When a statement runs over 140 characters on a line, it should be broken up, ideally after a comma or operator.
+  - Lines must not be longer than 120 characters.
+  - When a statement runs over 120 characters on a line, it should be broken up, ideally after a comma or operator.
 
 **[top](#table-of-contents)**
 
@@ -77,16 +77,16 @@ When developing software as an organization, the value of the software produced 
 
   ```typescript
   // bad
-  let greeting = "Hello World!"
-
-  // good
-  let greeting = 'Hello World!'
+  let greeting = "Your mom"
 
   // bad
   let msg = "Your mom told me 'hi'"
 
   // bad
   let msg = 'Your mom told me \'hi\''
+
+  // good
+  let greeting = 'Your mom'
 
   // good
   let msg = 'Your mom told me "hi"'
@@ -96,8 +96,8 @@ When developing software as an organization, the value of the software produced 
 
 ## Comments
   - Comments should be used judiciously. Your goal should be writing code that is intuitive and easy to follow without comments.
-  - Comments should be reserved for cases when you have refactored your code as much as is practical and its still not intuitive on its own, or there are subtle or important conditions that developers need to know about.
-  - If you do comment your code, make sure the comments are clear and concise. Think about your comments from the perspective of someone who isn't familiar with that area of the code.
+  - Comments should be reserved for cases when you have refactored your code as much as is practical and its still not intuitive on its own; or there are subtle or important conditions that developers need to know about.
+  - If you do comment your code, make sure the comments are clear and concise. Craft them the way you craft your code, thinking about them from the perspective of someone who isn't as familiar with the code as you are.
 
 The following example is a case where a comment is completely erroneous, and can actually make the code harder to read.
 
@@ -109,14 +109,22 @@ The following example is a case where a comment is completely erroneous, and can
 The following is an example of a well-placed comment:
 
   ```typescript
-  // square root of n with Newton-Raphson approximation
-  function sqrt(n: number): number {
-      let r = n / 2
-      while (abs(r - (n/r)) > t) {
-          r = 0.5 *  r + (n/r))
-      }
-      return r
-  }
+   /*
+    * Find the great cirlce distance between point A and point B using the
+    * haversine algorithm (https://en.wikipedia.org/wiki/Haversine_formula).
+    */
+   public haversineDistance(a: Point, b: Point): double
+   {
+       return 2 * math.aSin
+       (
+           math.sqrt
+           (
+               math.pow(math.sin(math.abs(a.lat - b.lon) / 2), 2) +
+               math.cos(a.lat) * math.cos(b.lat) *
+               math.pow(math.sin(math.abs(a.lon - b.lon) / 2), 2)
+           )
+       )
+   }
   ```
 
 
@@ -177,14 +185,12 @@ The following is an example of a well-placed comment:
   ```typescript
   // bad
   console.log(a + b)
-
   let a = 2
   let b = 4
 
   // good
   let a = 2
   let b = 4
-
   console.log(a + b)
   ```
 
@@ -196,7 +202,6 @@ The following is an example of a well-placed comment:
   function add(a: number, b: number): number {
       // c is on the global scope!
       c = 6
-
       return a + b + c
   }
   ```
@@ -205,6 +210,10 @@ The following is an example of a well-placed comment:
   - Declare each variable on a newline.
 
   ```typescript
+  // bad
+  // b will be defined on global scope.
+  let a = b = 2, c = 4
+
   // bad
   let a = 2,
       b = 2,
@@ -215,9 +224,6 @@ The following is an example of a well-placed comment:
   let b = 2
   let c = 4
 
-  // bad
-  // b will be defined on global scope.
-  let a = b = 2, c = 4
   ```
 
 ## Function Declarations
@@ -369,6 +375,7 @@ The following is an example of a well-placed comment:
       ...
   }
 
+  // bad
   function AddAmount(): void {
       ...
   }
@@ -378,6 +385,7 @@ The following is an example of a well-placed comment:
       ...
   }
 
+  // good
   function addAmount(): void {
       ...
   }
@@ -419,24 +427,22 @@ The following is an example of a well-placed comment:
   - Default to using `private` for all instance members. Only use `public` or `protected` if there is a good reason for code outside the class to get access to the member.
 
   ```typescript
-  class Person {
-      private fullName: string
 
-      public constructor(public firstName: string, public lastName: string) {
-          this.fullName = firstName + ' ' + lastName
-      }
+  // bad
+  class person {
+      public fullName: string
 
       public toString() {
           return this.fullName
       }
+  }
 
-      protected walkFor(millis: number) {
-          console.log(this.fullName + ' is now walking.')
+  // good
+  class Person {
+      private fullName: string
 
-          // Wait for millis milliseconds to stop walking
-          setTimeout(() => {
-              console.log(this.fullName + ' has stopped walking.')
-          }, millis)
+      public toString() {
+          return this.fullName
       }
   }
   ```
@@ -446,14 +452,12 @@ The following is an example of a well-placed comment:
 ### Interfaces
 
   - Interfaces should use UpperCamelCase.
-  - Interfaces should be prefaced with the capital letter I.
+  - Interfaces should be use the "-able" suffix where possible (e.g. `Geocodable`, `Runnable`).
   - Only `public` members should be in an interface, leave out `protected` and `private` members.
 
   ```typescript
-  interface IPerson {
-      firstName: string
-      lastName: string
-      toString(): string
+  interface Geocodable {
+      getPoint(name: string): Point
   }
   ```
 
@@ -468,10 +472,8 @@ The following is an example of a well-placed comment:
 
 ## Statements
 
-### Simple
-
-  - Each line should contain at most one statement.
-  - Do not put semicolons at the end of statements. Semicolons should only be used when it would be syntactically or semantically incorrect not to use one (as when declaring a `for` loop).
+### Semicolons
+  - Do not put semicolons at the end of statements. Semicolons should only be used when it would be syntactically or semantically required (as when declaring a `for` loop).
 
   ```typescript
   // good
@@ -488,6 +490,19 @@ The following is an example of a well-placed comment:
   }
   ```
 
+### Simple
+
+  - Each line should contain at most one statement.
+
+  ```typescript
+  // bad
+  if (condition === true) { alert('Passed!') }
+
+  // good
+  if (condition === true) {
+      alert('Passed!')
+  }
+  ```
 **[top](#table-of-contents)**
 
 ### Compound
@@ -547,8 +562,6 @@ If you do not add braces `{}` around compound statements, it makes it very easy 
   ```
 
 It appears the intention of the above code is to return if `condition === true`, but without braces `{}` the return statement will be executed regardless of the condition.
-
-  - Compount statements do not need to end in a semicolon `` with the exception of a `do { } while()` statement.
 
 **[top](#table-of-contents)**
 
@@ -767,7 +780,7 @@ Try statements should have the following form:
   }
   ```
 
-Always put `catch` and `finally` statements on their own line.
+Always put `catch` and `finally` keywords on their own line.
 
   ```typescript
   // bad
@@ -916,15 +929,6 @@ Blank lines improve code readability by allowing the developer to logically grou
 
   - Create declaration files `.d.ts` for your interfaces instead of putting them in your `.ts` files
   - Let the TypeScript compiler infer as much as possible
-  - Avoid defining types when it is unnecessary
-
-  ```typescript
-  // bad
-  let a: number = 2
-
-  // good
-  let a = 2
-  ```
 
   - Always define the return type of functions, this helps to make sure that functions always return the correct type
 
