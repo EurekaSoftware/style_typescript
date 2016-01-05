@@ -1,6 +1,6 @@
 # TypeScript Style Guide
 
-This is the TypeScript style guide that we use internally at Platypi! It is *semi-reasonable*, but it's more important that we keep a consistent look/feel of our code.
+This is the TypeScript style guide that we use internally at Eureka. It is *semi-reasonable*, but it's more important that we keep a consistent look/feel of our code.
 
 
 ## Table of Contents
@@ -56,6 +56,7 @@ When developing software as an organization, the value of the software produced 
 ## Files
   - All TypeScript files must have a ".ts" extension.
   - They should be all lower case, and only include letters, numbers, and periods.
+  - It is OK (even recommended) to separate words with periods (e.g. my.controller.ts).
   - **All files should end in a new line.** This is necessary for some Unix systems.
 
 **[top](#table-of-contents)**
@@ -77,7 +78,7 @@ When developing software as an organization, the value of the software produced 
 
   ```typescript
   // bad
-  let greeting = "Your mom"
+  let msg = "Your mom"
 
   // bad
   let msg = "Your mom told me 'hi'"
@@ -86,7 +87,7 @@ When developing software as an organization, the value of the software produced 
   let msg = 'Your mom told me \'hi\''
 
   // good
-  let greeting = 'Your mom'
+  let msg = 'Your mom'
 
   // good
   let msg = 'Your mom told me "hi"'
@@ -104,6 +105,13 @@ The following example is a case where a comment is completely erroneous, and can
   ```typescript
   // Set index to zero.
   let index = 0
+
+  /*
+   * saves user to database.
+   */
+  function saveUser(user: User) void {
+     ...
+  }
   ```
 
 The following is an example of a well-placed comment:
@@ -401,7 +409,7 @@ The following is an example of a well-placed comment:
 
 ### Types
 
-  - Types should be used whenever possible.
+  - Types should be used whenever possible. That's pretty much the whole point of TypeScript.
   - Arrays should be defined as `type[]` instead of `Array<type>`.
   - Use the `any` type sparingly, it is always better to define an interface.
   - Always specify the types of function parameters.
@@ -476,12 +484,12 @@ The following is an example of a well-placed comment:
   - Do not put semicolons at the end of statements. Semicolons should only be used when it would be syntactically or semantically required (as when declaring a `for` loop).
 
   ```typescript
-  // good
-  let greeting = 'Hello World'
-  alert(greeting)
+  // bad, terrible, the worst thinge very
+  let greeting = 'semi-colons are for losers who just like typing';
+  alert(greeting);
 
-  // bad
-  let greeting = 'Hello World'
+  // good
+  let greeting = 'semi-colons are for losers who just like typing'
   alert(greeting)
 
   // okay because required
@@ -668,7 +676,7 @@ If statements should take the following form:
 Always put `else` statements on their own line. Do not put the `else` keyword on the same line as the closing curly brace of the preceding `if` statement.
 
   ```typescript
-  // bad
+  // god I hate this
   if(a > b) {
      // ...
   } else {
@@ -694,9 +702,11 @@ For statements should have the following form:
   for(/* initialization */; /* condition */; /* update */) {
       // ...
   }
+  ```
 
-  let keys = Object.keys(/* object */)
+  for example:
 
+  ```
   for(let i = 0; i < keys.length; ++i) {
       // ...
   }
@@ -868,7 +878,7 @@ Blank lines improve code readability by allowing the developer to logically grou
   let neg = -a
   ```
 
-  - Each semicolon `` in the control part of a `for` statement should be followed with a space.
+  - Each semicolon in the control part of a `for` statement should be followed with a space.
 
   ```typescript
   // bad
