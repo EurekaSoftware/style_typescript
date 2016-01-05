@@ -56,7 +56,7 @@ When developing software as an organization, the value of the software produced 
 ## Files
   - All TypeScript files must have a ".ts" extension.
   - They should be all lower case, and only include letters, numbers, and periods.
-  - It is OK (even recommended) to separate words with periods (e.g. my.controller.ts).
+  - It is OK (even recommended) to separate words with periods (e.g. `my.controller.ts`).
   - **All files should end in a new line.** This is necessary for some Unix systems.
 
 **[top](#table-of-contents)**
@@ -109,7 +109,7 @@ The following example is a case where a comment is completely erroneous, and can
   /*
    * saves user to database.
    */
-  function saveUser(user: User) void {
+  function saveUser(user: User): void {
      ...
   }
   ```
@@ -484,7 +484,7 @@ The following is an example of a well-placed comment:
   - Do not put semicolons at the end of statements. Semicolons should only be used when it would be syntactically or semantically required (as when declaring a `for` loop).
 
   ```typescript
-  // bad, terrible, the worst thinge very
+  // bad, terrible, the worst thing ever
   let greeting = 'semi-colons are for losers who just like typing';
   alert(greeting);
 
@@ -521,7 +521,7 @@ Compound statements are statements containing lists of statements enclosed in cu
   - The enclosed statements should be indented 4 spaces.
 
   ```typescript
-  // bad
+  // I had better not ever see this
   if (condition === true) { alert('Passed!') }
 
   // good
