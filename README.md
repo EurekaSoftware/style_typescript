@@ -6,13 +6,12 @@ This is the TypeScript style guide that we use internally at Eureka. It is *semi
 ## Table of Contents
 
   0. [Introduction](#introduction)
-  0. [Browser Compatibility](#browser-compatibility)
   0. [Files](#files)
   0. [Indentation](#indentation)
+  0. [Semicolons](#semicolons)
   0. [Line Length](#line-length)
   0. [Quotes](#quotes)
   0. [Comments](#comments)
-    0. [Class](#class)
     0. [Inline](#inline)
     0. [Todo and XXX](#todo-and-xxx)
   0. [Variable Declarations](#variable-declarations)
@@ -64,6 +63,26 @@ When developing software as an organization, the value of the software produced 
 ## Indentation
   - The unit of indentation is four spaces.
   - **Never use tabs**, as this can lead to trouble when opening files in different IDEs/Text editors. Most text editors have a configuration option to change tabs to spaces.
+
+**[top](#table-of-contents)**
+
+## Semicolons
+  - Do not put semicolons at the end of statements. Semicolons should only be used when it would be syntactically or semantically required (as when declaring a `for` loop).
+
+  ```typescript
+  // bad, terrible, the worst thing ever
+  let greeting = 'semi-colons are for losers who just like typing';
+  alert(greeting);
+
+  // good
+  let greeting = 'semi-colons are for losers who just like typing'
+  alert(greeting)
+
+  // okay because required
+  for (let i = 0; i < 10; i++) {
+      ...
+  }
+  ```
 
 **[top](#table-of-contents)**
 
@@ -479,24 +498,6 @@ The following is an example of a well-placed comment:
 **[top](#table-of-contents)**
 
 ## Statements
-
-### Semicolons
-  - Do not put semicolons at the end of statements. Semicolons should only be used when it would be syntactically or semantically required (as when declaring a `for` loop).
-
-  ```typescript
-  // bad, terrible, the worst thing ever
-  let greeting = 'semi-colons are for losers who just like typing';
-  alert(greeting);
-
-  // good
-  let greeting = 'semi-colons are for losers who just like typing'
-  alert(greeting)
-
-  // okay because required
-  for (let i = 0; i < 10; i++) {
-      ...
-  }
-  ```
 
 ### Simple
 
